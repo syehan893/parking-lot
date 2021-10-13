@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:parking_lot/models/vehicle_model.dart';
 
 void main() {
   group('vehicle model test', () {
