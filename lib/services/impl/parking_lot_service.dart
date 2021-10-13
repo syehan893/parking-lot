@@ -35,7 +35,23 @@ class ParkingLotServiceImpl implements ParkingLotService {
 
   @override
   String leaveVehicle(LeaveRequest leaveRequest) {
-    // TODO: implement leaveVehicle
-    throw UnimplementedError();
+    for (var item in parkingLot.slots) {
+      if (item.vehicleParked != null) {
+        if (item.vehicleParked.registrationNumber ==
+            leaveRequest.registrationNumber) {
+          var slot = Slot(slotNumber: item.slotNumber, vehicleParked: null);
+          parkingLot.slots
+              .removeWhere((element) => element.slotNumber == item.slotNumber);
+          parkingLot = parkingLot.copywith(slots: [...parkingLot.slots, slot]);
+          return sprintf(ParkingLotConstant.leaveSuccess, [
+            leaveRequest.registrationNumber,
+            slot.slotNumber,
+            leaveRequest.parkingCharge
+          ]);
+        }
+      }
+    }
+    return sprintf(
+        ParkingLotConstant.registerNotFound, [leaveRequest.registrationNumber]);
   }
 }
