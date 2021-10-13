@@ -1,4 +1,5 @@
 import 'package:parking_lot/common/constant/parking_lot_constant.dart';
+import 'package:parking_lot/models/vehicle_model.dart';
 import 'package:parking_lot/services/parking_lot_service.dart';
 import 'package:parking_lot/models/parking_lot_model.dart';
 import 'package:parking_lot/models/slot_model.dart';
@@ -14,5 +15,11 @@ class ParkingLotServiceImpl implements ParkingLotService {
         slots: List.generate(capacity,
             (index) => Slot(slotNumber: index + 1, vehicleParked: null)));
     return sprintf(ParkingLotConstant.createdParkingLot, [parkingLot.capacity]);
+  }
+
+  @override
+  String parkVehicle(Vehicle vehicle) {
+    // TODO: implement parkVehicle
+    throw UnimplementedError();
   }
 }
