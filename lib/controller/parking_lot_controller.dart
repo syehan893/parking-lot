@@ -1,4 +1,5 @@
 import 'package:parking_lot/commands/create_parking_lot_command.dart';
+import 'package:parking_lot/commands/leave_parking_lot_command.dart';
 import 'package:parking_lot/commands/park_parking_lot_command.dart';
 import 'package:parking_lot/common/constant/parking_lot_constant.dart';
 import 'package:parking_lot/services/parking_lot_service.dart';
@@ -15,6 +16,9 @@ class ParkingLotController {
         CreateParkingLotCommand(parkingLotRepository: parkingLotRepository);
     var parkParkingLotCommand =
         ParkParkingLotCommand(parkingLotRepository: parkingLotRepository);
+    var leaveParkingLotCommand =
+        LeaveParkingLotCommand(parkingLotRepository: parkingLotRepository);
+
     switch (commandParkingLot) {
       case ParkingLotConstant.createParkingLot:
         final result = createParkingLotCommand.execute(command);
@@ -22,6 +26,10 @@ class ParkingLotController {
         break;
       case ParkingLotConstant.park:
         final result = parkParkingLotCommand.execute(command);
+        return result;
+        break;
+      case ParkingLotConstant.leave:
+        final result = leaveParkingLotCommand.execute(command);
         return result;
         break;
       default:
