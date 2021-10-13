@@ -7,6 +7,14 @@ class Slot extends Equatable {
 
   Slot({this.vehicleParked, this.slotNumber});
 
+  Slot copywith({
+    Vehicle vehicleParked,
+    int slotNumber,
+  }) =>
+      Slot(
+        vehicleParked: vehicleParked ?? this.vehicleParked,
+        slotNumber: slotNumber ?? this.slotNumber,
+      );
 
   @override
   List<Object> get props => [vehicleParked, slotNumber];
