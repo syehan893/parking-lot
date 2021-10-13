@@ -1,4 +1,5 @@
 import 'package:parking_lot/common/constant/parking_lot_constant.dart';
+import 'package:parking_lot/models/request/leave_request_model.dart';
 import 'package:parking_lot/models/vehicle_model.dart';
 import 'package:parking_lot/services/parking_lot_service.dart';
 import 'package:parking_lot/models/parking_lot_model.dart';
@@ -30,5 +31,11 @@ class ParkingLotServiceImpl implements ParkingLotService {
       }
     }
     return ParkingLotConstant.parkingIsFull;
+  }
+
+  @override
+  String leaveVehicle(LeaveRequest leaveRequest) {
+    // TODO: implement leaveVehicle
+    throw UnimplementedError();
   }
 }

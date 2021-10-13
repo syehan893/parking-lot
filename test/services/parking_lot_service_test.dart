@@ -1,4 +1,5 @@
 import 'package:parking_lot/common/constant/parking_lot_constant.dart';
+import 'package:parking_lot/models/request/leave_request_model.dart';
 import 'package:parking_lot/models/vehicle_model.dart';
 import 'package:parking_lot/services/impl/parking_lot_service.dart';
 import 'package:parking_lot/services/parking_lot_service.dart';
@@ -41,6 +42,26 @@ void main() {
       var expected = ParkingLotConstant.parkingIsFull;
       parkingLotRepository.createParkingLot(0);
       final actual = parkingLotRepository.parkVehicle(vehicle);
+      expect(actual, expected);
+      expect(actual, isA<String>());
+    });
+  });
+
+  group('leave parking lot service test', () {
+    ParkingLotService parkingLotRepository;
+    setUp(() {
+      parkingLotRepository = ParkingLotServiceImpl();
+    });
+    test(
+        'should return success message when leave from parking lot with charge 30',
+        () {
+      var vehicle = Vehicle(registrationNumber: 'KA-1234-SS', color: 'blue');
+      var expected = sprintf(
+          ParkingLotConstant.leaveSuccess, [vehicle.registrationNumber, 1, 4]);
+      parkingLotRepository.createParkingLot(1);
+      parkingLotRepository.parkVehicle(vehicle);
+      final actual = parkingLotRepository.leaveVehicle(LeaveRequest(
+          registrationNumber: vehicle.registrationNumber, parkingCharge: 4));
       expect(actual, expected);
       expect(actual, isA<String>());
     });
