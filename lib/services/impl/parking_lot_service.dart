@@ -19,7 +19,16 @@ class ParkingLotServiceImpl implements ParkingLotService {
 
   @override
   String parkVehicle(Vehicle vehicle) {
-    // TODO: implement parkVehicle
-    throw UnimplementedError();
+    for (var item in parkingLot.slots) {
+      if (item.vehicleParked == null) {
+        var slot = Slot(slotNumber: item.slotNumber, vehicleParked: vehicle);
+        parkingLot.slots
+            .removeWhere((element) => element.slotNumber == slot.slotNumber);
+        parkingLot = parkingLot.copywith(slots: [...parkingLot.slots, slot]);
+        parkingLot.slots.sort((a, b) => a.slotNumber.compareTo(b.slotNumber));
+        return sprintf(ParkingLotConstant.parkingSuccess, [slot.slotNumber]);
+      }
+    }
+    return ParkingLotConstant.parkingIsFull;
   }
 }
