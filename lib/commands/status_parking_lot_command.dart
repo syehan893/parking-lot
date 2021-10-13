@@ -10,6 +10,14 @@ class StatusParkingLotCommand implements CommandExecutor<List<Slot>, NoParam> {
 
   @override
   List<Slot> execute(NoParam input) {
-    return null;
+    var result = parkingLotRepository.parkingStatus();
+    print(ParkingLotConstant.titleStatus);
+    for (var slot in result) {
+      if (slot.vehicleParked != null) {
+        print(ParkingLotConstant.parkingStatus(
+            slot.slotNumber, slot.vehicleParked.registrationNumber));
+      }
+    }
+    return result;
   }
 }
