@@ -1,4 +1,6 @@
 import 'package:parking_lot/commands/command_executor.dart';
+import 'package:parking_lot/common/constant/parking_lot_constant.dart';
+import 'package:parking_lot/models/car_model.dart';
 import 'package:parking_lot/services/parking_lot_service.dart';
 
 class ParkParkingLotCommand implements CommandExecutor<String, String> {
@@ -8,6 +10,10 @@ class ParkParkingLotCommand implements CommandExecutor<String, String> {
 
   @override
   String execute(String input) {
-    return input;
+    var registrationNumber = input.split(ParkingLotConstant.emptySpace)[1];
+    var car = Car(registrationNumber: registrationNumber);
+    final result = parkingLotRepository.parkVehicle(car);
+    print(result);
+    return result;
   }
 }
