@@ -57,7 +57,9 @@ class ParkingLotServiceImpl implements ParkingLotService {
 
   @override
   List<Slot> parkingStatus() {
-    // TODO: implement parkingStatus
-    throw UnimplementedError();
+    parkingLot.slots.sort((firstSlot, secondSlot) =>
+        firstSlot.slotNumber.compareTo(secondSlot.slotNumber));
+    final result = parkingLot.slots.map((slot) => slot).toList();
+    return result;
   }
 }
