@@ -62,4 +62,10 @@ class ParkingLotServiceImpl implements ParkingLotService {
     final result = parkingLot.slots.map((slot) => slot).toList();
     return result;
   }
+
+  @override
+  int parkingCharge(int parkingTime) {
+    // TODO: implement parkingCharge
+    throw UnimplementedError();
+  }
 }

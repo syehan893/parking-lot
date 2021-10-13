@@ -96,4 +96,20 @@ void main() {
       expect(actual, isA<List<Slot>>());
     });
   });
+
+  group('parking charge service test', () {
+    ParkingLotService parkingLotRepository;
+    setUp(() {
+      parkingLotRepository = ParkingLotServiceImpl();
+    });
+    test(
+        'should return parking charge with Charge applicable is 10 for first 2 hours and 10 for every additional hour',
+        () {
+      var parkingTime = 5; 
+      var expected = 40;
+      final actual = parkingLotRepository.parkingCharge(parkingTime);
+      expect(actual, expected);
+      expect(actual, isA<int>());
+    });
+  });
 }

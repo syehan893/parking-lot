@@ -7,4 +7,5 @@ abstract class ParkingLotService {
   String parkVehicle(Vehicle vehicle);
   String leaveVehicle(LeaveRequest leaveRequest);
   List<Slot> parkingStatus();
+  int parkingCharge(int parkingTime);
 }
