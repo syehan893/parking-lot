@@ -9,12 +9,18 @@ void main() {
     var slot = Slot(slotNumber: 4, vehicleParked: vehicle);
     var capacity = 5;
     var actual = ParkingLot(slots: [slot], capacity: capacity);
+    var expectedCopyWith = ParkingLot(slots: [slot], capacity: 4);
     test('should have slot and capacity', () {
       var props = [
         [slot],
         capacity
       ];
       expect(actual.props, props);
+    });
+
+    test('should return parking lot copy with', () {
+      final actualCopyWith = actual.copywith(capacity: 4);
+      expect(actualCopyWith, expectedCopyWith);
     });
   });
 }
