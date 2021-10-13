@@ -1,5 +1,14 @@
-import 'package:parking_lot/parking_lot.dart' as parking_lot;
+import 'dart:io';
 
-void main(List<String> arguments) {
-  print('Hello world: ${parking_lot.calculate()}!');
+import 'package:parking_lot/common/constant/parking_lot_constant.dart';
+import 'package:parking_lot/controller/parking_lot_controller.dart';
+import 'package:parking_lot/services/impl/parking_lot_service.dart';
+
+void main() {
+  var parkingLotController =
+      ParkingLotController(parkingLotRepository: ParkingLotServiceImpl());
+  while (true) {
+    stdout.write(ParkingLotConstant.prefixCommand);
+    parkingLotController.parkingLotCommands(stdin.readLineSync());
+  }
 }
