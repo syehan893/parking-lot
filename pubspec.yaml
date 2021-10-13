@@ -4,7 +4,7 @@ description: A starting point for Dart libraries or applications.
 # homepage: https://www.example.com
 
 environment:
-  sdk: '>=2.7.0 <3.0.0'
+  sdk: '>=2.6.0 <3.0.0'
 
 dependencies:
   intl: ^0.16.1
@@ -13,7 +13,6 @@ dependencies:
   sprintf: "^4.0.0"
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  mockito: 4.1.1
+  mockito: ^3.0.0
+  test: ^1.15.2
   build_runner: ^1.10.1

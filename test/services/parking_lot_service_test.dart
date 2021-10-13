@@ -1,8 +1,8 @@
-import 'package:flutter_test/flutter_test.dart';
 import 'package:parking_lot/common/constant/parking_lot_constant.dart';
 import 'package:parking_lot/services/impl/parking_lot_service.dart';
 import 'package:parking_lot/services/parking_lot_service.dart';
 import 'package:sprintf/sprintf.dart';
+import 'package:test/test.dart';
 
 void main() {
   group('create parking lot service test', () {

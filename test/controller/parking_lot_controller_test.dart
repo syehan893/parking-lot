@@ -1,10 +1,10 @@
-import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:parking_lot/commands/create_parking_lot_command.dart';
 import 'package:parking_lot/common/constant/parking_lot_constant.dart';
 import 'package:parking_lot/controller/parking_lot_controller.dart';
 import 'package:parking_lot/services/parking_lot_service.dart';
 import 'package:sprintf/sprintf.dart';
+import 'package:test/test.dart';
 
 class MockParkingLotService extends Mock implements ParkingLotService {}
 
