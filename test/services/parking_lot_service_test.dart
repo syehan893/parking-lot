@@ -65,5 +65,18 @@ void main() {
       expect(actual, expected);
       expect(actual, isA<String>());
     });
+
+    test('should return failed message when leave from parking lot', () {
+      var errorRegistrationNumber = 'KA-1234-SA';
+      var vehicle = Vehicle(registrationNumber: 'KA-1234-SS', color: 'blue');
+      var expected = sprintf(
+          ParkingLotConstant.registerNotFound, [errorRegistrationNumber]);
+      parkingLotRepository.createParkingLot(1);
+      parkingLotRepository.parkVehicle(vehicle);
+      final actual = parkingLotRepository.leaveVehicle(LeaveRequest(
+          registrationNumber: errorRegistrationNumber, parkingCharge: 4));
+      expect(actual, expected);
+      expect(actual, isA<String>());
+    });
   });
 }
