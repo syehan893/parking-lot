@@ -36,6 +36,13 @@ void main() {
       expect(actual, isA<String>());
     });
 
-    
+    test('should return parking failed message when vehicle parked', () {
+      var vehicle = Vehicle(registrationNumber: 'KA-1234-SS', color: 'blue');
+      var expected = ParkingLotConstant.parkingIsFull;
+      parkingLotRepository.createParkingLot(0);
+      final actual = parkingLotRepository.parkVehicle(vehicle);
+      expect(actual, expected);
+      expect(actual, isA<String>());
+    });
   });
 }
