@@ -1,5 +1,6 @@
 import 'package:mockito/mockito.dart';
 import 'package:parking_lot/commands/create_parking_lot_command.dart';
+import 'package:parking_lot/commands/leave_parking_lot_command.dart';
 import 'package:parking_lot/commands/park_parking_lot_command.dart';
 import 'package:parking_lot/common/constant/parking_lot_constant.dart';
 import 'package:parking_lot/controller/parking_lot_controller.dart';
@@ -13,6 +14,7 @@ void main() {
   group('parking lot controller test', () {
     CreateParkingLotCommand createParkingLotCommand;
     ParkParkingLotCommand parkParkingLotCommand;
+    LeaveParkingLotCommand leaveParkingLotCommand;
     MockParkingLotService mockParkingLotService;
     ParkingLotController parkingLotController;
     setUpAll(() {
@@ -21,6 +23,8 @@ void main() {
           CreateParkingLotCommand(parkingLotRepository: mockParkingLotService);
       parkParkingLotCommand =
           ParkParkingLotCommand(parkingLotRepository: mockParkingLotService);
+      leaveParkingLotCommand =
+          LeaveParkingLotCommand(parkingLotRepository: mockParkingLotService);
       parkingLotController =
           ParkingLotController(parkingLotRepository: mockParkingLotService);
     });
@@ -40,6 +44,18 @@ void main() {
       var command = 'park KA-1234-SS';
       var expected = sprintf(ParkingLotConstant.parkingSuccess, [1]);
       when(parkParkingLotCommand.execute(command))
+          .thenAnswer((realInvocation) => expected);
+      final actual = parkingLotController.parkingLotCommands(command);
+      expect(actual, expected);
+    });
+    test(
+        'should return success message when controller call leave parking lot command',
+        () {
+      var command = 'leave KA-1234-SS 4';
+      var expected =
+          sprintf(ParkingLotConstant.leaveSuccess, ['KA-1234-SS', 1, 4]);
+      ;
+      when(leaveParkingLotCommand.execute(command))
           .thenAnswer((realInvocation) => expected);
       final actual = parkingLotController.parkingLotCommands(command);
       expect(actual, expected);
