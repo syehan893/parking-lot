@@ -1,5 +1,6 @@
 import 'package:parking_lot/common/constant/parking_lot_constant.dart';
 import 'package:parking_lot/models/request/leave_request_model.dart';
+import 'package:parking_lot/models/slot_model.dart';
 import 'package:parking_lot/models/vehicle_model.dart';
 import 'package:parking_lot/services/impl/parking_lot_service.dart';
 import 'package:parking_lot/services/parking_lot_service.dart';
@@ -77,6 +78,22 @@ void main() {
           registrationNumber: errorRegistrationNumber, parkingCharge: 4));
       expect(actual, expected);
       expect(actual, isA<String>());
+    });
+  });
+
+    group('status parking lot service test', () {
+    ParkingLotService parkingLotRepository;
+    setUp(() {
+      parkingLotRepository = ParkingLotServiceImpl();
+    });
+    test('should return list slot  when status parking lot called', () {
+      var vehicle = Vehicle(registrationNumber: 'KA-1234-SS', color: 'blue');
+      var expected = Slot(slotNumber: 1, vehicleParked: vehicle);
+      parkingLotRepository.createParkingLot(1);
+      parkingLotRepository.parkVehicle(vehicle);
+      final actual = parkingLotRepository.parkingStatus();
+      expect(actual, [expected]);
+      expect(actual, isA<List<Slot>>());
     });
   });
 }

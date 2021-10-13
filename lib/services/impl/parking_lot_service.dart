@@ -54,4 +54,10 @@ class ParkingLotServiceImpl implements ParkingLotService {
     return sprintf(
         ParkingLotConstant.registerNotFound, [leaveRequest.registrationNumber]);
   }
+
+  @override
+  List<Slot> parkingStatus() {
+    // TODO: implement parkingStatus
+    throw UnimplementedError();
+  }
 }
