@@ -65,7 +65,9 @@ class ParkingLotServiceImpl implements ParkingLotService {
 
   @override
   int parkingCharge(int parkingTime) {
-    // TODO: implement parkingCharge
-    throw UnimplementedError();
+    if (parkingTime > 2) {
+      return ((parkingTime - 2) * 10) + 10;
+    }
+    return 10;
   }
 }
